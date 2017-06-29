@@ -7,13 +7,13 @@
 </head>
 <body>
 <div class="container">
-  <h1>List of all names and age</h1>
+  <h1>Student Details</h1>
 <div >
   <ul class="age">
   <% for(var i=0; i<age.length; i++) {%>
     <li class="age">
       <span><%= age[i].name %></span>
-      <span>:<%= age[i].ages %></span>
+      <span><%= age[i].ages %></span>
     </li>
   <% } %>
   </ul>
@@ -28,16 +28,20 @@
     <button type="submit">Submit</button>
   </form>
 </div>
-  <div class="c1">
-    <h2>Replace name</h2>
-    <button id="update"> update </button>
+ <div class="c1">
+    <h2>Update Age</h2>
+    <form action="/update" method="POST">
+    <input type="text" placeholder="name" name="name">
+    <input type="text" placeholder="ages" name="ages">
+    <button type="submit">Update</button>
+  </form>
   </div>
 
   <div class="c1">
-    <h2>Delete detail</h2>
-    <button id="delete"> Delete  </button>
-  </div>
-
+    <h2>Delete Detail</h2>
+    <form action="/delete" method="POST">
+    <input type="text" placeholder="name" name="name">
+    <button type="submit">Delete</button>  </div>
   <script src="main.js"></script>
 
 </body>
