@@ -19,14 +19,14 @@ app.use(bodyParser.json())
 app.use(express.static('public'))
 //for display
 app.get('/', (req, res) => {
-  db.collection('age').find().toArray((err, result) => {
+  db.collection('student_detail').find().toArray((err, result) => {
     if (err) return console.log(err)
     res.render('index.ejs', {age: result})
   })
 })
 //for adding
 app.post('/age', (req, res) => {
-  db.collection('age').save(req.body, (err, result) => {
+  db.collection('student_detail').save(req.body, (err, result) => {
     if (err) return console.log(err)
     console.log('saved to database')
     res.redirect('/')
@@ -34,7 +34,7 @@ app.post('/age', (req, res) => {
 })
 //for update
 app.post('/update', (req, res) => {
-  db.collection('age')
+  db.collection('student_detail')
   .findOneAndUpdate({name: req.body.name}, {
     $set: {
       name: req.body.name,
@@ -48,7 +48,7 @@ app.post('/update', (req, res) => {
 })
 //for delete
 app.post('/delete', (req, res) => {
-  db.collection('age')
+  db.collection('student_detail')
   .findOneAndDelete({name: req.body.name}, (err, result) => {
     if (err) return res.send(500, err)
     console.log('Entry deleted')
