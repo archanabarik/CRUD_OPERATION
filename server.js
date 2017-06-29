@@ -33,25 +33,25 @@ app.post('/age', (req, res) => {
   })
 })
 //for update
-app.put('/age', (req, res) => {
+app.post('/update', (req, res) => {
   db.collection('age')
-  .findOneAndUpdate({name: 'Yoda'}, {
+  .findOneAndUpdate({name: req.body.name}, {
     $set: {
       name: req.body.name,
       ages: req.body.ages
     }
-  }, {
-    sort: {_id: -1},
-    upsert: true
   }, (err, result) => {
     if (err) return res.send(err)
-    res.send(result)
+    console.log('Entry updated')
+    res.redirect('/')
   })
 })
 //for delete
-app.delete('/age', (req, res) => {
-  db.collection('age').findOneAndDelete({name: req.body.name}, (err, result) => {
+app.post('/delete', (req, res) => {
+  db.collection('age')
+  .findOneAndDelete({name: req.body.name}, (err, result) => {
     if (err) return res.send(500, err)
-    res.send('age got deleted')
+    console.log('Entry deleted')
+    res.redirect('/')
   })
 })
